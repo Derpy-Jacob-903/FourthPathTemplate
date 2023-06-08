@@ -7,37 +7,28 @@ using Il2CppAssets.Scripts.Models.Towers.Projectiles.Behaviors;
 using Il2CppAssets.Scripts.Models.Towers;
 using Il2CppSystem.IO;
 using BTD_Mod_Helper.Extensions;
-using Il2CppAssets.Scripts.Models.Towers.Behaviors.Emissions;
 using Il2CppAssets.Scripts.Models.Towers.Projectiles;
-using Il2CppAssets.Scripts.Models.Towers.Behaviors.Attack;
 using Il2CppAssets.Scripts.Unity;
-using Il2CppAssets.Scripts.Models.Towers.Behaviors.Abilities;
-using Il2CppAssets.Scripts.Models.Towers.Behaviors.Attack.Behaviors;
-using BTD_Mod_Helper.Api.ModOptions;
-using Il2CppAssets.Scripts.Models.Towers.Behaviors;
-using BTD_Mod_Helper.Api.Display;
-using Il2CppAssets.Scripts.Unity.Display;
 using Il2CppAssets.Scripts.Models.Towers.Weapons;
 
-[assembly: MelonInfo(typeof(EeveeFourthPath.EeveeFourthPath), EeveeFourthPath.ModHelperData.Name, EeveeFourthPath.ModHelperData.Version, EeveeFourthPath.ModHelperData.RepoOwner)]
+[assembly: MelonInfo(typeof(FourthPath.FourthPathMod), FourthPath.ModHelperData.Name, FourthPath.ModHelperData.Version, FourthPath.ModHelperData.RepoOwner)]
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
 
-namespace EeveeFourthPath;
+namespace FourthPath;
 
-public class EeveeFourthPath : BloonsTD6Mod
+public class FourthPathMod : BloonsTD6Mod
 {
     public override void OnApplicationStart()
     {
-        ModHelper.Msg<EeveeFourthPath>("FourthPath loaded!");
+        ModHelper.Msg<FourthPathMod>("FourthPath loaded!");
     }
 }
 public class FourthPath : PathPlusPlus
 {
     public override string Tower => "WizardMonkey";
-
     public override int UpgradeCount => 5; // Increase this up to 5 as you create your Upgrades
 }
-public class LongRangePins : UpgradePlusPlus<FourthPath>
+public class RangeUpgrade : UpgradePlusPlus<FourthPath>
 {
     public override int Cost => 500;
     public override int Tier => 1;
@@ -47,7 +38,7 @@ public class LongRangePins : UpgradePlusPlus<FourthPath>
 
     public override void ApplyUpgrade(TowerModel towerModel)
     {
-        towerModel.IncreaseRange(10);
+        towerModel.IncreaseRange(15);
 
         if (IsHighestUpgrade(towerModel))
         {
@@ -55,14 +46,14 @@ public class LongRangePins : UpgradePlusPlus<FourthPath>
         }
     }
 }
-public class HardPins : UpgradePlusPlus<FourthPath>
+public class LeadPoppingPowerUpgrade : UpgradePlusPlus<FourthPath>
 {
     public override int Cost => 1000;
     public override int Tier => 2;
     public override string Icon => VanillaSprites.RedHotRangsUpgradeIcon;
     //public override string Portrait => "700Sylveon_PSMD";
 
-    public override string Description => "The Tower attacks can pop Lead and Frozen bloons.";
+    public override string Description => "The Tower's attacks can pop Lead bloons."; // and Frozen
 
     public override void ApplyUpgrade(TowerModel towerModel)
     {
@@ -78,11 +69,11 @@ public class HardPins : UpgradePlusPlus<FourthPath>
         }
     }
 }
-public class Sylveon : UpgradePlusPlus<FourthPath>
+public class PierceAndDamageUpgrade : UpgradePlusPlus<FourthPath>
 {
     public override int Cost => 5000; //3000+350+
     public override int Tier => 3;
-    public override string Icon => VanillaSprites.ArmorPiercingDartsUpgradeIcon;
+    public override string Icon => VanillaSprites.CrossBowUpgradeIcon;
 
     public override string Description => "Increases pierce and damage of the Tower's attacks.";
     //public override string Portrait => "700Sylveon_PSMD";
@@ -106,7 +97,7 @@ public class Sylveon : UpgradePlusPlus<FourthPath>
     }
 }
 
-public class PlayRough : UpgradePlusPlus<FourthPath>
+public class LaserShockUpgrade : UpgradePlusPlus<FourthPath>
 {
     public override int Cost => 10000; //3000+350+
     public override int Tier => 4;

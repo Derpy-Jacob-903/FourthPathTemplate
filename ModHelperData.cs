@@ -1,4 +1,4 @@
-namespace EeveeFourthPath;
+namespace FourthPath;
 
 public static class ModHelperData
 {
